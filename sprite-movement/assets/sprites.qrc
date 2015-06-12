@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>sprites/down_walk.png</file>
         <file>sprites/snowwhite.png</file>
     </qresource>
 </RCC>
