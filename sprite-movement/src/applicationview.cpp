@@ -70,6 +70,7 @@ void ApplicationView::keyPressEvent(QKeyEvent *keyEvent)
 
 void ApplicationView::keyReleaseEvent(QKeyEvent* keyEvent)
 {
+    // TODO detect IDLE state for player
     QQuickView::keyReleaseEvent(keyEvent);
 }
 

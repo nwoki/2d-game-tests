@@ -1,10 +1,8 @@
 set(spritemovement_SRCS
     applicationview.cpp
-    core.cpp
     main.cpp
     player.cpp
 )
-
 
 ## final application
 

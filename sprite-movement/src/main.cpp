@@ -1,14 +1,11 @@
-#include "core.h"
+#include "applicationview.h"
 
 #include <QtGui/QGuiApplication>
-#include <QtQml/QQmlApplicationEngine>
-
-#include <QtQuick/QQuickWindow>
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
-    Core core;
+    ApplicationView appView("qrc:///qml/main.qml");
 
     return app.exec();
 
