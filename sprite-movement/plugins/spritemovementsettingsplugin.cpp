@@ -1,5 +1,5 @@
 #include "playersettings.h"
-#include "settings.h"
+#include "generalsettings.h"
 #include "spritemovementsettingsplugin.h"
 
 #include <QtQml/QQmlComponent>
@@ -17,8 +17,8 @@ void SpriteMovementSettingsPlugin::registerTypes(const char* uri)
     int versionMinor = 1;
 
     // register types used for the application settings
+    qmlRegisterType<GeneralSettings>(uri, versionMajor, versionMinor, "Settings");
     qmlRegisterType<PlayerSettings>(uri, versionMajor, versionMinor, "PlayerSettings");
-    qmlRegisterType<Settings>(uri, versionMajor, versionMinor, "Settings");
 }
 
 };

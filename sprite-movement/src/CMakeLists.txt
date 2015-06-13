@@ -1,8 +1,8 @@
 include_directories(${CMAKE_SOURCE_DIR})
 
 set(spritemovement_SRCS
+    ../plugins/generalsettings.cpp
     ../plugins/playersettings.cpp
-    ../plugins/settings.cpp
     applicationview.cpp
     main.cpp
     player.cpp
@@ -21,8 +21,6 @@ set(spritemovement_SRCS
 configure_file(auxconfig.h.in ${CMAKE_SOURCE_DIR}/generated/auxconfig.h)
 
 qt5_add_resources(spritemovement_QRCS
-    ../assets/maps.qrc
-    ../assets/players.qrc
     ../assets/qml.qrc
 )
 

@@ -3,7 +3,7 @@
 
 #include <generated/auxconfig.h>
 #include <plugins/playersettings.h>
-#include <plugins/settings.h>
+#include <plugins/generalsettings.h>
 
 #include <QtCore/QDebug>
 #include <QtCore/QDir>
@@ -25,7 +25,7 @@ public:
     Player *player;
     QQmlComponent *settingsComponent;
 
-    Nwoki::Qml::SpriteMovementSettings::Settings *settings;
+    Nwoki::Qml::SpriteMovementSettings::GeneralSettings *settings;
 };
 
 
@@ -55,6 +55,7 @@ ApplicationView::ApplicationView(const QString &qmlSourceFile, QWindow *parent)
 
 ApplicationView::~ApplicationView()
 {
+    delete d->settings;
     delete d->player;
     delete d;
 }
@@ -101,7 +102,7 @@ void ApplicationView::onSettingsComponentStatusChanged(QQmlComponent::Status sta
             d->settings = nullptr;
         }
 
-        d->settings = qobject_cast<Nwoki::Qml::SpriteMovementSettings::Settings*>(d->settingsComponent->create());
+        d->settings = qobject_cast<Nwoki::Qml::SpriteMovementSettings::GeneralSettings*>(d->settingsComponent->create());
 
         // TODO handle this, otherwise the following fails brutally with a segfault
         if (d->settings == nullptr) {

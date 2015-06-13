@@ -1,5 +1,5 @@
 #include "playersettings.h"
-#include "settings.h"
+#include "generalsettings.h"
 
 namespace Nwoki {
 
@@ -7,7 +7,7 @@ namespace Qml {
 
 namespace SpriteMovementSettings {
 
-class Settings::Private
+    class GeneralSettings::Private
 {
 public:
     Private()
@@ -18,24 +18,24 @@ public:
 };
 
 
-Settings::Settings(QObject *parent)
+GeneralSettings::GeneralSettings(QObject *parent)
     : QObject(parent)
     , d(new Private)
 {
 }
 
-Settings::~Settings()
+GeneralSettings::~GeneralSettings()
 {
     delete d->playerSettings;
     delete d;
 }
 
-PlayerSettings* Settings::player() const
+PlayerSettings* GeneralSettings::player() const
 {
     return d->playerSettings;
 }
 
-void Settings::setPlayer(PlayerSettings *playerSettings)
+void GeneralSettings::setPlayer(PlayerSettings *playerSettings)
 {
     if (d->playerSettings != nullptr) {
         delete d->playerSettings;

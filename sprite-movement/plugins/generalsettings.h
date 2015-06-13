@@ -1,5 +1,5 @@
-#ifndef SPRITEMOVEMENTSETTING_SETTINGS_H
-#define SPRITEMOVEMENTSETTING_SETTINGS_H
+#ifndef SPRITEMOVEMENTSETTING_GENERALSETTINGS_H
+#define SPRITEMOVEMENTSETTING_GENERALSETTINGS_H
 
 #include <QtCore/QObject>
 
@@ -12,16 +12,16 @@ namespace SpriteMovementSettings {
 
 class PlayerSettings;
 
-class Settings : public QObject
+class GeneralSettings : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(Settings)
+    Q_DISABLE_COPY(GeneralSettings)
 
     Q_PROPERTY(Nwoki::Qml::SpriteMovementSettings::PlayerSettings* player       READ player     WRITE setPlayer)
 
 public:
-    Settings(QObject *parent = 0);
-    ~Settings();
+    GeneralSettings(QObject *parent = 0);
+    ~GeneralSettings();
 
     Nwoki::Qml::SpriteMovementSettings::PlayerSettings* player() const;
     void setPlayer(Nwoki::Qml::SpriteMovementSettings::PlayerSettings *playerSettings);
@@ -37,4 +37,4 @@ private:
 
 }
 
-#endif  // SPRITEMOVEMENTSETTING_SETTINGS_H
+#endif  // SPRITEMOVEMENTSETTING_GENERALSETTINGS_H
