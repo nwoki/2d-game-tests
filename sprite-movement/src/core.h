@@ -6,7 +6,7 @@ class QQmlApplicationEngine;
 class Core
 {
 public:
-    Core(QQmlApplicationEngine *engine);
+    Core();
     ~Core();
 
 private:

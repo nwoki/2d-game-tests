@@ -1,6 +1,8 @@
 set(spritemovement_SRCS
-    main.cpp
+    applicationview.cpp
     core.cpp
+    main.cpp
+    player.cpp
 )
 
 
@@ -18,7 +20,6 @@ qt5_add_resources(spritemovement_QRCS
     ../assets/sprites.qrc
 )
 
-# add_executable(transfer ${transfer_SRCS} ${transfer_UIS} ${transfer_QRCS})
 add_executable(sprite-movement ${spritemovement_SRCS} ${spritemovement_QRCS})
 
 qt5_use_modules(sprite-movement Core Gui Widgets Qml Quick)

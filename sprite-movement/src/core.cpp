@@ -1,27 +1,31 @@
+#include "applicationview.h"
 #include "core.h"
 
 #include <QtQml/QQmlApplicationEngine>
+#include <QtQuick/QQuickView>
+#include <QtQuickWidgets/QQuickWidget>
 
 
 class Core::Private
 {
 public:
-    Private() {};
+    Private()
+        : appView(new ApplicationView("qrc:///qml/main.qml", nullptr))
+    {}
 
-    QQmlApplicationEngine *engine;
+    ApplicationView *appView;
 };
 
 
-Core::Core(QQmlApplicationEngine *engine)
+Core::Core()
     : d(new Private)
 {
-    d->engine = engine;
-
-    // start the GUI
-    d->engine->load(QUrl("qrc:///qml/main.qml"));
 }
 
 Core::~Core()
 {
+    d->appView->close();
+
+    delete d->appView;
     delete d;
 }
