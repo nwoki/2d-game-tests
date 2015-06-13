@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>sprites/maps/greenmap/layout.json</file>
+        <file>sprites/maps/greenmap/preview.png</file>
+        <file>sprites/maps/greenmap/tiles.png</file>
+    </qresource>
+</RCC>

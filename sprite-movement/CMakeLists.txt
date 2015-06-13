@@ -12,10 +12,16 @@ find_package(Qt5 COMPONENTS Core Gui Widgets Qml Quick)
 set(CMAKE_AUTOMOC TRUE)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output/plugins/nwoki/qml/SpriteMovementSettings)
+
+# custom variables
+set(PLUGIN_DIRECTORY ${CMAKE_BINARY_DIR}/output/plugins)
+set(SETTINGS_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output/settings)
 
 # C++11
 add_definitions("-std=gnu++11")
 
 # src
 add_subdirectory(src)
+add_subdirectory(plugins)
