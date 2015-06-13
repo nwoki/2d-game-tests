@@ -117,6 +117,8 @@ void ApplicationView::onSettingsComponentStatusChanged(QQmlComponent::Status sta
                 engine()->rootContext()->setContextProperty("PlayerSettings", d->settings->player());
             }
 
+            engine()->rootContext()->setContextProperty("SpritesDirectory", SPRITES_DIR);
+
             // after loadign the settings file, I set the QML source otherwise the context properties
             // aren't picked up
             setSource(QUrl(d->qmlSourceFile));

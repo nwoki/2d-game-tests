@@ -16,6 +16,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output/plugins/nwoki/qml/SpriteMovementSettings)
 
 # custom variables
+set(SPRITES_DIRECTORY ${CMAKE_SOURCE_DIR}/assets/sprites/)
 set(PLUGIN_DIRECTORY ${CMAKE_BINARY_DIR}/output/plugins)
 set(SETTINGS_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output/settings)
 

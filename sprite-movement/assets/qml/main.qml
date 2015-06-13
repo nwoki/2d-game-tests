@@ -17,7 +17,7 @@ Item {
         // TODO player sprite info to be move to settings file
         width: PlayerSettings.width;
         height: PlayerSettings.height;
-        source: "qrc:///sprites/players/16x18_green-man-sprite.png";
+        source: "file://" + SpritesDirectory + "players/" + PlayerSettings.sprite;
         frameCount: PlayerSettings.frameCount;
         frameHeight: PlayerSettings.height;
         frameWidth: PlayerSettings.width;
