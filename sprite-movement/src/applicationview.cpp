@@ -2,6 +2,7 @@
 #include "player.h"
 
 #include <generated/auxconfig.h>
+#include <plugins/mapsettings.h>
 #include <plugins/playersettings.h>
 #include <plugins/generalsettings.h>
 
@@ -116,6 +117,18 @@ void ApplicationView::onSettingsComponentStatusChanged(QQmlComponent::Status sta
                 // setup C++ objects visible to the QML side
                 engine()->rootContext()->setContextProperty("CppPlayer", d->player);
                 engine()->rootContext()->setContextProperty("PlayerSettings", d->settings->player());
+            }
+
+            if (d->settings->map() != nullptr) {
+                // This setting can't be null otherwise there's no point in loading the demo game
+                qDebug() << "MAP NAME: " << d->settings->map()->name();
+
+//                 d->settings->map()->setCollisionObjects(SPRITES_DIR
+//                                                         + "maps/"
+//                                                         + d->settings->map()->name()
+//                                                         + "/"
+//                                                         + d->settings->map()->name()
+//                                                         + ".json");
             }
 
             engine()->rootContext()->setContextProperty("SpritesDirectory", SPRITES_DIR);

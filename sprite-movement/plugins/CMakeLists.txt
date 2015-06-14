@@ -3,6 +3,7 @@ set(spritemovmentsettings_SRCS
     mapsettings.cpp
     playersettings.cpp
     spritemovementsettingsplugin.cpp
+    mapparsers/tiledjsonparser.cpp
 )
 
 # set(spritemovmentqmlsettings_QMLFILES

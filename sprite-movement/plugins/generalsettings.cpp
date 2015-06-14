@@ -39,7 +39,7 @@ MapSettings *GeneralSettings::map() const
     return d->mapSettings;
 }
 
-PlayerSettings* GeneralSettings::player() const
+PlayerSettings *GeneralSettings::player() const
 {
     return d->playerSettings;
 }
