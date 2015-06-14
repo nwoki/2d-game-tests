@@ -1,3 +1,4 @@
+#include "mapsettings.h"
 #include "playersettings.h"
 #include "generalsettings.h"
 
@@ -7,13 +8,15 @@ namespace Qml {
 
 namespace SpriteMovementSettings {
 
-    class GeneralSettings::Private
+class GeneralSettings::Private
 {
 public:
     Private()
-        : playerSettings(nullptr)
+        : mapSettings(nullptr)
+        , playerSettings(nullptr)
     {}
 
+    MapSettings *mapSettings;
     PlayerSettings *playerSettings;
 };
 
@@ -26,13 +29,29 @@ GeneralSettings::GeneralSettings(QObject *parent)
 
 GeneralSettings::~GeneralSettings()
 {
+    delete d->mapSettings;
     delete d->playerSettings;
     delete d;
+}
+
+MapSettings *GeneralSettings::map() const
+{
+    return d->mapSettings;
 }
 
 PlayerSettings* GeneralSettings::player() const
 {
     return d->playerSettings;
+}
+
+void GeneralSettings::setMap(MapSettings *mapSettings)
+{
+    if (d->mapSettings != nullptr) {
+        delete d->mapSettings;
+        d->mapSettings = nullptr;
+    }
+
+    d->mapSettings = mapSettings;
 }
 
 void GeneralSettings::setPlayer(PlayerSettings *playerSettings)

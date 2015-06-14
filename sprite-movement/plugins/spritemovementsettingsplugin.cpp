@@ -1,3 +1,4 @@
+#include "mapsettings.h"
 #include "playersettings.h"
 #include "generalsettings.h"
 #include "spritemovementsettingsplugin.h"
@@ -17,6 +18,7 @@ void SpriteMovementSettingsPlugin::registerTypes(const char* uri)
     int versionMinor = 1;
 
     // register types used for the application settings
+    qmlRegisterType<MapSettings>(uri, versionMajor, versionMinor, "MapSettings");
     qmlRegisterType<GeneralSettings>(uri, versionMajor, versionMinor, "Settings");
     qmlRegisterType<PlayerSettings>(uri, versionMajor, versionMinor, "PlayerSettings");
 }

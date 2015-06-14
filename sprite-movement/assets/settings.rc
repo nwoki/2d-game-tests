@@ -9,4 +9,9 @@ Settings {
             sprite: "16x18_green-man-sprite.png";
             frameCount: 3;
         }
+
+    map:
+        MapSettings {
+            name: "greenmap";
+        }
 }

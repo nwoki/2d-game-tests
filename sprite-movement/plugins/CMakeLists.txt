@@ -1,5 +1,6 @@
 set(spritemovmentsettings_SRCS
     generalsettings.cpp
+    mapsettings.cpp
     playersettings.cpp
     spritemovementsettingsplugin.cpp
 )
