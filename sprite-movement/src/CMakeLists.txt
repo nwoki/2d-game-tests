@@ -2,7 +2,7 @@ include_directories(${CMAKE_SOURCE_DIR})
 
 set(spritemovement_SRCS
     ../plugins/generalsettings.cpp
-    ../plugins/mapsettings.cpp
+    ../plugins/level.cpp
     ../plugins/playersettings.cpp
     ../plugins/mapparsers/tiledjsonparser.cpp
     applicationview.cpp

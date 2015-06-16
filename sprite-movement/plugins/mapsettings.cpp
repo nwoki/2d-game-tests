@@ -1,4 +1,5 @@
 #include "../../generated/auxconfig.h"
+#include "map.h"
 #include "mapsettings.h"
 #include "mapparsers/tiledjsonparser.h"
 
@@ -19,8 +20,7 @@ public:
         : tiledJsonParser(new TiledJsonParser)
     {}
 
-    QString name;
-    QList<QRect> collisionBoxes;
+    QHash<QString, Map*> maps;
     TiledJsonParser *tiledJsonParser;
 };
 
@@ -33,28 +33,32 @@ MapSettings::MapSettings(QObject *parent)
 
 MapSettings::~MapSettings()
 {
+    qDeleteAll(d->maps);
+    d->maps.clear();
+
     delete d->tiledJsonParser;
     delete d;
 }
 
-QString MapSettings::name() const
+Map* MapSettings::map(const QString &mapName)
 {
-    return d->name;
+    return d->maps.value(mapName, nullptr);
 }
 
-void MapSettings::setName(const QString &name)
-{
-    d->name = name;
 
-    // parse as soon as we load a new map
-    // NOTE when this becomes bigger and I'll need a list of maps for various levels etc, I think this might be a good idea
-    // to move the parsing out so that I can call it on demand
-    d->collisionBoxes = d->tiledJsonParser->parseObjects(MAPS_DIR
-                                                        + d->name
-                                                        + "/" + d->name + ".json");
-
-    qDebug() << "I have : " << d->collisionBoxes.count() << " collision boxes";
-}
+// void MapSettings::setName(const QString &name)
+// {
+//     d->name = name;
+//
+//     // parse as soon as we load a new map
+//     // NOTE when this becomes bigger and I'll need a list of maps for various levels etc, I think this might be a good idea
+//     // to move the parsing out so that I can call it on demand
+//     d->collisionBoxes = d->tiledJsonParser->parseObjects(MAPS_DIR
+//                                                         + d->name
+//                                                         + "/" + d->name + ".json");
+//
+//     qDebug() << "I have : " << d->collisionBoxes.count() << " collision boxes";
+// }
 
 }
 

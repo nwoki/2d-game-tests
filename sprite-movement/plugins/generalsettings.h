@@ -3,6 +3,7 @@
 
 #include <QtCore/QObject>
 
+#include <QtQml/QQmlListProperty>
 
 namespace Nwoki {
 
@@ -10,7 +11,7 @@ namespace Qml {
 
 namespace SpriteMovementSettings {
 
-class MapSettings;
+class Level;
 class PlayerSettings;
 
 class GeneralSettings : public QObject
@@ -18,17 +19,21 @@ class GeneralSettings : public QObject
     Q_OBJECT
     Q_DISABLE_COPY(GeneralSettings)
 
-    Q_PROPERTY(Nwoki::Qml::SpriteMovementSettings::MapSettings* map             READ map        WRITE setMap)
-    Q_PROPERTY(Nwoki::Qml::SpriteMovementSettings::PlayerSettings* player       READ player     WRITE setPlayer)
+    Q_PROPERTY(QQmlListProperty<Nwoki::Qml::SpriteMovementSettings::Level> levels       READ levels)
+    Q_PROPERTY(Nwoki::Qml::SpriteMovementSettings::PlayerSettings* player               READ player     WRITE setPlayer)
+    Q_PROPERTY(QString startLevel                                                       READ startLevel WRITE setStartLevel)
 
 public:
     GeneralSettings(QObject *parent = 0);
     ~GeneralSettings();
 
-    Nwoki::Qml::SpriteMovementSettings::MapSettings* map() const;
+    Level* level(int index);
+    QQmlListProperty<Nwoki::Qml::SpriteMovementSettings::Level> levels();
+    int levelCount() const;
     Nwoki::Qml::SpriteMovementSettings::PlayerSettings* player() const;
-    void setMap(Nwoki::Qml::SpriteMovementSettings::MapSettings *mapSettings);
+    QString startLevel() const;
     void setPlayer(Nwoki::Qml::SpriteMovementSettings::PlayerSettings *playerSettings);
+    void setStartLevel(const QString &startLevel);
 
 private:
     class Private;

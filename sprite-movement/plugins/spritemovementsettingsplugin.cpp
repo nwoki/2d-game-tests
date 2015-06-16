@@ -1,6 +1,7 @@
-#include "mapsettings.h"
-#include "playersettings.h"
 #include "generalsettings.h"
+#include "level.h"
+#include "map.h"
+#include "playersettings.h"
 #include "spritemovementsettingsplugin.h"
 
 #include <QtQml/QQmlComponent>
@@ -18,8 +19,9 @@ void SpriteMovementSettingsPlugin::registerTypes(const char* uri)
     int versionMinor = 1;
 
     // register types used for the application settings
-    qmlRegisterType<MapSettings>(uri, versionMajor, versionMinor, "MapSettings");
     qmlRegisterType<GeneralSettings>(uri, versionMajor, versionMinor, "Settings");
+    qmlRegisterType<Level>(uri, versionMajor, versionMinor, "Level");
+    qmlRegisterType<Map>(uri, versionMajor, versionMinor, "Map");
     qmlRegisterType<PlayerSettings>(uri, versionMajor, versionMinor, "PlayerSettings");
 }
 

@@ -10,8 +10,13 @@ Settings {
             frameCount: 3;
         }
 
-    map:
-        MapSettings {
-            name: "greenmap";
+    startLevel: "intro level";
+
+    levels: [
+        Level {
+            name: "intro level";
+
+            map: Map { name: "greenmap"; }
         }
+    ]
 }

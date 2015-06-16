@@ -2,7 +2,7 @@
 #include "player.h"
 
 #include <generated/auxconfig.h>
-#include <plugins/mapsettings.h>
+#include <plugins/level.h>
 #include <plugins/playersettings.h>
 #include <plugins/generalsettings.h>
 
@@ -119,16 +119,15 @@ void ApplicationView::onSettingsComponentStatusChanged(QQmlComponent::Status sta
                 engine()->rootContext()->setContextProperty("PlayerSettings", d->settings->player());
             }
 
-            if (d->settings->map() != nullptr) {
-                // This setting can't be null otherwise there's no point in loading the demo game
-                qDebug() << "MAP NAME: " << d->settings->map()->name();
+            // prepare levels
+            if (d->settings->levels().count != 0) {
+                qDebug("GOT ME SOME LEVELS");
 
-//                 d->settings->map()->setCollisionObjects(SPRITES_DIR
-//                                                         + "maps/"
-//                                                         + d->settings->map()->name()
-//                                                         + "/"
-//                                                         + d->settings->map()->name()
-//                                                         + ".json");
+                for (int i = 0; i < d->settings->levelCount(); ++i) {
+                    qDebug() << d->settings->level(i)->name();
+                }
+
+                // TODO load start level
             }
 
             engine()->rootContext()->setContextProperty("SpritesDirectory", SPRITES_DIR);
