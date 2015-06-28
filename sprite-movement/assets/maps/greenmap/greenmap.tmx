@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="left-up" width="30" height="30" tilewidth="16" tileheight="16" nextobjectid="91">
+<map version="1.0" orientation="orthogonal" renderorder="left-up" width="30" height="30" tilewidth="16" tileheight="16" nextobjectid="93">
  <tileset firstgid="1" name="greenmap-tiles" tilewidth="16" tileheight="16">
   <image source="tiles.png" width="240" height="160"/>
  </tileset>
@@ -13,7 +13,7 @@
    H4sIAAAAAAAAA72WSwrDMAxEs2khXbfQnKDdddceI/e/TRSowAhZH3vsByIhjmONx4q9LGO4UFwHfdviTvEwxh+dF48ffZ7lU3nOumbPO+uy9EVyqunyWClulTbUnGs8KTbnHYQX+z+YF8Xb6dOre1fuvxS/YH+U7hPLX0mPbjnPEX8lCN0RfyWIdZ7xl5F6o/rLWvf81f4LUm+LfqS/Gd+R/mZ0I/zNtp9k6pfxdEX2mqi/5fqK+qjttZzTyPq19toWf7No8zPjvKHpHbm3M6U2tE7rvFNq6z1XtWJ9W+Yk68G7WmR8lfXgXS1mn595nEyOCLxxDpprl00QDgAA
   </data>
  </layer>
- <objectgroup name="Collisions">
+ <objectgroup name="collision">
   <object id="43" x="0" y="32" width="32" height="32"/>
   <object id="44" x="48" y="80" width="32" height="32"/>
   <object id="51" x="80" y="112" width="32" height="32"/>
@@ -45,5 +45,8 @@
   <object id="88" x="368" y="160" width="16" height="16"/>
   <object id="89" x="352" y="160" width="16" height="16"/>
   <object id="90" x="368" y="208" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup name="playerstart">
+  <object id="91" x="64" y="0" width="32" height="32"/>
  </objectgroup>
 </map>

@@ -24,8 +24,8 @@
         }, 
         {
          "draworder":"topdown",
-         "height":30,
-         "name":"Collisions",
+         "height":0,
+         "name":"collision",
          "objects":[
                 {
                  "height":32,
@@ -495,11 +495,38 @@
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
-         "width":30,
+         "width":0,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "height":0,
+         "name":"playerstart",
+         "objects":[
+                {
+                 "height":32,
+                 "id":91,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":64,
+                 "y":0
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":0,
          "x":0,
          "y":0
         }],
- "nextobjectid":91,
+ "nextobjectid":93,
  "orientation":"orthogonal",
  "properties":
     {
