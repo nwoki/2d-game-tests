@@ -22,6 +22,8 @@ class GeneralSettings : public QObject
     Q_PROPERTY(QQmlListProperty<Nwoki::Qml::SpriteMovementSettings::Map> maps           READ maps)
     Q_PROPERTY(Nwoki::Qml::SpriteMovementSettings::PlayerSettings* player               READ player     WRITE setPlayer)
     Q_PROPERTY(QString startMap                                                         READ startMap   WRITE setStartMap)
+    Q_PROPERTY(int viewHeight                                                           READ viewHeight WRITE setViewHeight)
+    Q_PROPERTY(int viewWidth                                                            READ viewWidth  WRITE setViewWidth)
 
 public:
     GeneralSettings(QObject *parent = 0);
@@ -32,8 +34,13 @@ public:
     int mapCount() const;
     Nwoki::Qml::SpriteMovementSettings::PlayerSettings* player() const;
     QString startMap() const;
+    int viewHeight() const;
+    int viewWidth() const;
+
     void setPlayer(Nwoki::Qml::SpriteMovementSettings::PlayerSettings *playerSettings);
     void setStartMap(const QString &startMap);
+    void setViewHeight(int viewHeight);
+    void setViewWidth(int viewWidth);
 
 private:
     class Private;

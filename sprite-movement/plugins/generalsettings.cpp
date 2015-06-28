@@ -13,11 +13,15 @@ class GeneralSettings::Private
 public:
     Private()
         : playerSettings(nullptr)
+        , viewHeight(480)
+        , viewWidth(480)
     {}
 
     QList<Map*> maps;
     PlayerSettings *playerSettings;
     QString startMap;
+    int viewHeight;
+    int viewWidth;
 };
 
 
@@ -98,11 +102,30 @@ void GeneralSettings::setPlayer(PlayerSettings *playerSettings)
     d->playerSettings = playerSettings;
 }
 
+void GeneralSettings::setViewHeight(int viewHeight)
+{
+    d->viewHeight = viewHeight;
+}
+
+void GeneralSettings::setViewWidth(int viewWidth)
+{
+    d->viewWidth = viewWidth;
+}
+
 QString GeneralSettings::startMap() const
 {
     return d->startMap;
 }
 
+int GeneralSettings::viewHeight() const
+{
+    return d->viewHeight;
+}
+
+int GeneralSettings::viewWidth() const
+{
+    return d->viewWidth;
+}
 
 }
 

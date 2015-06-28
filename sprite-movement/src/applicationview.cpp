@@ -41,9 +41,6 @@ ApplicationView::ApplicationView(const QString &qmlSourceFile, QWindow *parent)
 
     connect(d->settingsComponent, &QQmlComponent::statusChanged, this, &ApplicationView::onSettingsComponentStatusChanged);
 
-    setWidth(800);
-    setHeight(600);
-
     // we want the QML to follow the View. And not the other way around
     setResizeMode(SizeRootObjectToView);
 
@@ -116,27 +113,10 @@ void ApplicationView::onSettingsComponentStatusChanged(QQmlComponent::Status sta
 
                 // setup C++ objects visible to the QML side
                 engine()->rootContext()->setContextProperty("CppPlayer", d->player);
-                engine()->rootContext()->setContextProperty("GeneralSettings", d->settings);
                 engine()->rootContext()->setContextProperty("PlayerSettings", d->settings->player());
             }
 
-            // prepare levels
-            if (d->settings->mapCount() != 0) {
-                qDebug("GOT ME SOME MAPS");
-
-                // look for the start level and load it
-                // done via QML
-//                 for (int i = 0; i < d->settings->levelCount(); ++i) {
-//                     qDebug() << d->settings->level(i)->name();
-//
-//                     if (d->settings->level(i)->name() == d->settings->startLevel()) {
-//                         qDebug() << "GOT START LEVEL: " << d->settings->startLevel();
-//                     }
-//                 }
-
-                // TODO load start level
-            }
-
+            engine()->rootContext()->setContextProperty("GeneralSettings", d->settings);
             engine()->rootContext()->setContextProperty("SpritesDirectory", SPRITES_DIR);
             engine()->rootContext()->setContextProperty("MapsDirectory", MAPS_DIR);
 

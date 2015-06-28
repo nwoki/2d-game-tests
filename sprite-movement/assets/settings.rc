@@ -1,6 +1,10 @@
 import nwoki.qml.SpriteMovementSettings 0.1;
 
 Settings {
+    // must be <= than the maps  width/height
+    viewWidth: 480
+    viewHeight: 480
+
     player:
         PlayerSettings {
             name: "GreenMan";

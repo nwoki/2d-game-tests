@@ -2,10 +2,8 @@ import QtQuick 2.4;
 import Player 1.0;
 
 Item {
-    anchors.fill: parent;
-
-    width: 800;
-    height: 600;
+    width: GeneralSettings.viewWidth;
+    height: GeneralSettings.viewHeight;
 
     Image {
         id: mapBg;
