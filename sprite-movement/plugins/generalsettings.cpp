@@ -1,6 +1,6 @@
-#include "level.h"
-#include "playersettings.h"
 #include "generalsettings.h"
+#include "map.h"
+#include "playersettings.h"
 
 namespace Nwoki {
 
@@ -15,9 +15,9 @@ public:
         : playerSettings(nullptr)
     {}
 
-    QList<Level*> levels;
+    QList<Map*> maps;
     PlayerSettings *playerSettings;
-    QString startLevel;
+    QString startMap;
 };
 
 
@@ -29,53 +29,53 @@ GeneralSettings::GeneralSettings(QObject *parent)
 
 GeneralSettings::~GeneralSettings()
 {
-    qDeleteAll(d->levels);
-    d->levels.clear();
+    qDeleteAll(d->maps);
+    d->maps.clear();
 
     delete d->playerSettings;
     delete d;
 }
 
-Level* GeneralSettings::level(int index)
+Map* GeneralSettings::map(int index)
 {
-    if (index > d->levels.count() || index < 0) {
+    if (index > d->maps.count() || index < 0) {
         return nullptr;
     } else {
-        return d->levels.at(index);
+        return d->maps.at(index);
     }
 }
 
-QQmlListProperty<Level> GeneralSettings::levels()
+QQmlListProperty<Map> GeneralSettings::maps()
 {
     // in case i use it via QML (should never need it as the file is intended for c++ use ONLY)
-    return QQmlListProperty<Level>(this , 0
+    return QQmlListProperty<Map>(this , 0
                                 // Append function
-                                , [] (QQmlListProperty<Nwoki::Qml::SpriteMovementSettings::Level> *property, Level *value) -> void {
+                                , [] (QQmlListProperty<Nwoki::Qml::SpriteMovementSettings::Map> *property, Map *value) -> void {
                                     GeneralSettings *gs = qobject_cast<GeneralSettings*>(property->object);
                                     if (value) {
-                                        gs->d->levels.append(value);
+                                        gs->d->maps.append(value);
                                     }
                                 }
                                 // Count function
-                                , [] (QQmlListProperty<Nwoki::Qml::SpriteMovementSettings::Level> *property) -> int {
-                                    return qobject_cast<GeneralSettings*>(property->object)->d->levels.count();
+                                , [] (QQmlListProperty<Nwoki::Qml::SpriteMovementSettings::Map> *property) -> int {
+                                    return qobject_cast<GeneralSettings*>(property->object)->d->maps.count();
                                 }
                                 // At function
-                                , [] (QQmlListProperty<Nwoki::Qml::SpriteMovementSettings::Level> *property, int index) -> Level* {
-                                    return qobject_cast<GeneralSettings*>(property->object)->d->levels.at(index);
+                                , [] (QQmlListProperty<Nwoki::Qml::SpriteMovementSettings::Map> *property, int index) -> Map* {
+                                    return qobject_cast<GeneralSettings*>(property->object)->d->maps.at(index);
                                 }
                                 // Clear function
-                                , [] (QQmlListProperty<Level> *property) {
+                                , [] (QQmlListProperty<Map> *property) {
                                     GeneralSettings *gs = qobject_cast<GeneralSettings*>(property->object);
-                                    qDeleteAll(gs->d->levels);
-                                    gs->d->levels.clear();
+                                    qDeleteAll(gs->d->maps);
+                                    gs->d->maps.clear();
                                 }
                             );
 }
 
-int GeneralSettings::levelCount() const
+int GeneralSettings::mapCount() const
 {
-    return d->levels.count();
+    return d->maps.count();
 }
 
 PlayerSettings *GeneralSettings::player() const
@@ -83,9 +83,9 @@ PlayerSettings *GeneralSettings::player() const
     return d->playerSettings;
 }
 
-void GeneralSettings::setStartLevel(const QString &startLevel)
+void GeneralSettings::setStartMap(const QString &startMap)
 {
-    d->startLevel = startLevel;
+    d->startMap = startMap;
 }
 
 void GeneralSettings::setPlayer(PlayerSettings *playerSettings)
@@ -98,9 +98,9 @@ void GeneralSettings::setPlayer(PlayerSettings *playerSettings)
     d->playerSettings = playerSettings;
 }
 
-QString GeneralSettings::startLevel() const
+QString GeneralSettings::startMap() const
 {
-    return d->startLevel;
+    return d->startMap;
 }
 
 

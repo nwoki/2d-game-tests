@@ -11,7 +11,7 @@ namespace Qml {
 
 namespace SpriteMovementSettings {
 
-class Level;
+class Map;
 class PlayerSettings;
 
 class GeneralSettings : public QObject
@@ -19,21 +19,21 @@ class GeneralSettings : public QObject
     Q_OBJECT
     Q_DISABLE_COPY(GeneralSettings)
 
-    Q_PROPERTY(QQmlListProperty<Nwoki::Qml::SpriteMovementSettings::Level> levels       READ levels)
+    Q_PROPERTY(QQmlListProperty<Nwoki::Qml::SpriteMovementSettings::Map> maps           READ maps)
     Q_PROPERTY(Nwoki::Qml::SpriteMovementSettings::PlayerSettings* player               READ player     WRITE setPlayer)
-    Q_PROPERTY(QString startLevel                                                       READ startLevel WRITE setStartLevel)
+    Q_PROPERTY(QString startMap                                                         READ startMap   WRITE setStartMap)
 
 public:
     GeneralSettings(QObject *parent = 0);
     ~GeneralSettings();
 
-    Level* level(int index);
-    QQmlListProperty<Nwoki::Qml::SpriteMovementSettings::Level> levels();
-    int levelCount() const;
+    Map* map(int index);
+    QQmlListProperty<Nwoki::Qml::SpriteMovementSettings::Map> maps();
+    int mapCount() const;
     Nwoki::Qml::SpriteMovementSettings::PlayerSettings* player() const;
-    QString startLevel() const;
+    QString startMap() const;
     void setPlayer(Nwoki::Qml::SpriteMovementSettings::PlayerSettings *playerSettings);
-    void setStartLevel(const QString &startLevel);
+    void setStartMap(const QString &startMap);
 
 private:
     class Private;

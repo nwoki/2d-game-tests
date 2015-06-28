@@ -7,6 +7,11 @@ Item {
     width: 800;
     height: 600;
 
+    Image {
+        id: mapBg;
+        source: "file://" + MapsDirectory + GeneralSettings.startMap + "/" + GeneralSettings.startMap + ".png";
+    }
+
     AnimatedSprite {
         id: demoSprite;
 
