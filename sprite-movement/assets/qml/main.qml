@@ -13,7 +13,8 @@ Item {
     AnimatedSprite {
         id: demoSprite;
 
-        anchors.centerIn: parent;
+        x: GeneralSettings.map(GeneralSettings.startMap).playerStartX;
+        y: GeneralSettings.map(GeneralSettings.startMap).playerStartY;
 
         running: false;
 

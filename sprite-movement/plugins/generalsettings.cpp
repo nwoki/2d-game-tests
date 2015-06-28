@@ -49,6 +49,24 @@ Map* GeneralSettings::map(int index)
     }
 }
 
+Map* GeneralSettings::map(const QString &mapName)
+{
+    if (mapName.isEmpty()) {
+        return nullptr;
+    }
+
+    Map *found = nullptr;
+
+    for (Map *m : d->maps) {
+        if (m->name() == mapName) {
+            found = m;
+            break;
+        }
+    }
+
+    return found;
+}
+
 QQmlListProperty<Map> GeneralSettings::maps()
 {
     // in case i use it via QML (should never need it as the file is intended for c++ use ONLY)

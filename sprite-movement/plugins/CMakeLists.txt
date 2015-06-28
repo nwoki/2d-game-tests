@@ -2,7 +2,6 @@ set(spritemovmentsettings_SRCS
     generalsettings.cpp
     level.cpp
     map.cpp
-    mapsettings.cpp
     playersettings.cpp
     spritemovementsettingsplugin.cpp
     mapparsers/tiledjsonparser.cpp

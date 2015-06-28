@@ -30,6 +30,7 @@ public:
     ~GeneralSettings();
 
     Map* map(int index);
+    Q_INVOKABLE Nwoki::Qml::SpriteMovementSettings::Map* map(const QString &mapName);
     QQmlListProperty<Nwoki::Qml::SpriteMovementSettings::Map> maps();
     int mapCount() const;
     Nwoki::Qml::SpriteMovementSettings::PlayerSettings* player() const;

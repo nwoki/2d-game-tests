@@ -18,8 +18,9 @@ public:
 };
 
 
-TiledJsonParser::TiledJsonParser()
-    : d(new Private)
+TiledJsonParser::TiledJsonParser(QObject *parent)
+    : QObject(parent)
+    , d(new Private)
 {
 }
 
@@ -28,13 +29,12 @@ TiledJsonParser::~TiledJsonParser()
     delete d;
 }
 
-QList<QRect> TiledJsonParser::parseObjects(const QString &jsonMapFile)
+void TiledJsonParser::parseObjects(const QString &jsonMapFile)
 {
     QFile jsonFile(jsonMapFile);
-    QList<QRect> objects;
 
     if (!jsonFile.open(QIODevice::ReadOnly)) {
-        return objects;
+        return;
     }
 
     QJsonParseError jsonParseError;
@@ -42,7 +42,7 @@ QList<QRect> TiledJsonParser::parseObjects(const QString &jsonMapFile)
 
     if (jsonParseError.error != QJsonParseError::NoError) {
         qDebug() << "ERROR: " << jsonParseError.errorString();
-        return objects;
+        return;
     }
 
     // do the actual parsing
@@ -51,19 +51,40 @@ QList<QRect> TiledJsonParser::parseObjects(const QString &jsonMapFile)
     for (const QVariant &layerVariant : jsonRootObj.value("layers").toVariant().toList()) {
         QVariantMap layerMap = layerVariant.toMap();
 
-        // objects
-        if (layerMap.value("type").toString() == QStringLiteral("objectgroup")) {
+        // collision objects
+        if (layerMap.value("type").toString() == QStringLiteral("objectgroup")
+            && layerMap.value("name").toString().toLower() == QStringLiteral("collision")) {
+
             QVariantList layerObjects = layerMap.value("objects").toList();
 
+            QList<QRect> objects;
             for (const QVariant &object : layerObjects) {
                 QVariantMap objectMap = object.toMap();
                 objects.append(QRect(objectMap.value("x").toInt()
-                                    , objectMap.value("y").toInt()
-                                    , objectMap.value("width").toInt()
-                                    , objectMap.value("height").toInt()));
+                , objectMap.value("y").toInt()
+                , objectMap.value("width").toInt()
+                , objectMap.value("height").toInt()));
+            }
+
+            Q_EMIT collisionObjects(objects);
+        }
+
+        // player start object
+        else if (layerMap.value("type").toString() == QStringLiteral("objectgroup")
+            && layerMap.value("name").toString().toLower() == QStringLiteral("playerstart")) {
+
+            QVariantList layerObjects = layerMap.value("objects").toList();
+
+            // just extract the first position. If there's more than one, then it's the devs fault
+            if (layerObjects.count() > 0) {
+                QVariantMap playerStartMap = layerObjects.at(0).toMap();
+
+                Q_EMIT playerStartObject(QRect(playerStartMap.value("x").toInt()
+                                            , playerStartMap.value("y").toInt()
+                                            , playerStartMap.value("width").toInt()
+                                            , playerStartMap.value("height").toInt()));
             }
         }
     }
-
-    return objects;
 }
+
