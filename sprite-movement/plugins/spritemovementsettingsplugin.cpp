@@ -20,7 +20,6 @@ void SpriteMovementSettingsPlugin::registerTypes(const char* uri)
 
     // register types used for the application settings
     qmlRegisterType<GeneralSettings>(uri, versionMajor, versionMinor, "Settings");
-    qmlRegisterType<Level>(uri, versionMajor, versionMinor, "Level");
     qmlRegisterType<Map>(uri, versionMajor, versionMinor, "Map");
     qmlRegisterType<PlayerSettings>(uri, versionMajor, versionMinor, "PlayerSettings");
 }

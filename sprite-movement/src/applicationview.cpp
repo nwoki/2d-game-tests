@@ -2,7 +2,7 @@
 #include "player.h"
 
 #include <generated/auxconfig.h>
-#include <plugins/level.h>
+#include <plugins/map.h>
 #include <plugins/playersettings.h>
 #include <plugins/generalsettings.h>
 
