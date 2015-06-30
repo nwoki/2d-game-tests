@@ -2,23 +2,29 @@ import QtQuick 2.4;
 import Player 1.0;
 
 Item {
-    anchors.fill: parent;
+    width: GeneralSettings.viewWidth;
+    height: GeneralSettings.viewHeight;
 
-    width: 800;
-    height: 600;
+    Image {
+        id: mapBg;
+        source: "file://" + MapsDirectory + GeneralSettings.startMap + "/" + GeneralSettings.startMap + ".png";
+    }
 
     AnimatedSprite {
         id: demoSprite;
 
-        anchors.centerIn: parent;
+        x: GeneralSettings.map(GeneralSettings.startMap).playerStartX;
+        y: GeneralSettings.map(GeneralSettings.startMap).playerStartY;
 
         running: false;
-        width: 32;
-        height: 48;
-        source: "qrc:///sprites/snowwhite.png";
-        frameCount: 4;
-        frameHeight: 48;
-        frameWidth: 32;
+
+        // TODO player sprite info to be move to settings file
+        width: PlayerSettings.width;
+        height: PlayerSettings.height;
+        source: "file://" + SpritesDirectory + "players/" + PlayerSettings.sprite;
+        frameCount: PlayerSettings.frameCount;
+        frameHeight: PlayerSettings.height;
+        frameWidth: PlayerSettings.width;
         frameRate: 10;
     }
 
@@ -32,22 +38,27 @@ Item {
                 demoSprite.running = false;
             }
 
+            // All sprites must be made the same way to facilitate animations
+            // UP - top row
+            // RIGHT - second row
+            // DOWN - third row
+            // LEFT - fourth row
             switch (CppPlayer.movement) {
-                case Player.MovementLeft:
+                case Player.MovementUp:
                     demoSprite.frameX = 0;
-                    demoSprite.frameY = 48;
+                    demoSprite.frameY = 0;
                     break;
                 case Player.MovementRight:
                     demoSprite.frameX = 0;
-                    demoSprite.frameY = 48*2;
-                    break;
-                case Player.MovementUp:
-                    demoSprite.frameX = 0;
-                    demoSprite.frameY = 48*3;
+                    demoSprite.frameY = PlayerSettings.height;
                     break;
                 case Player.MovementDown:
                     demoSprite.frameX = 0;
-                    demoSprite.frameY = 0;
+                    demoSprite.frameY = PlayerSettings.height*2;
+                    break;
+                case Player.MovementLeft:
+                    demoSprite.frameX = 0;
+                    demoSprite.frameY = PlayerSettings.height*3;
                     break;
             }
         }
